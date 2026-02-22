@@ -26,9 +26,10 @@ pipeline {
 
          stage('Deploy') {
              steps {
-                bat 'docker rm -f fiber_db || exit 0'
-                bat 'docker compose down'
-                bat 'docker compose up -d --build'
+                 bat 'docker compose down --remove-orphans'
+                 bat 'docker rm -f fiber_app || exit 0'
+                 bat 'docker rm -f fiber_db || exit 0'
+                 bat 'docker compose up -d --build'
              }
          }
 
